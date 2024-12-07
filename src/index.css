@@ -38,6 +38,26 @@ body {
   }
 }
 
+/* Hide scrollbar in Webkit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  display: none; /* Hides the scrollbar */
+}
+
+/* Hide scrollbar in Firefox */
+body, .scrollable {
+  scrollbar-width: none; /* Hides the scrollbar */
+}
+
+/* Hide scrollbar for other browsers */
+body, .scrollable {
+  overflow: auto; /* Enables scrolling */
+}
+
+/* Apply to all scrollable elements */
+.scrollable {
+  overflow: auto; /* Enables scrolling */
+}
+
 @layer utilities {
   .border-hsla {
     @apply border border-white/20;
