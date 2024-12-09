@@ -37,6 +37,8 @@ const NavBar = () => {
   }, [isAudioPlaying]);
 
   useEffect(() => {
+    const isMobile = window.innerWidth < 770; // Check if the screen width is less than 770px
+
     if (currentScrollY === 0) {
       // Topmost position: show navbar without floating-nav
       setIsNavVisible(true);
@@ -46,9 +48,13 @@ const NavBar = () => {
       setIsNavVisible(false);
       navContainerRef.current.classList.add("floating-nav");
     } else if (currentScrollY < lastScrollY) {
-      // Scrolling up: show navbar with floating-nav
-      setIsNavVisible(true);
-      navContainerRef.current.classList.add("floating-nav");
+      // Scrolling up: hide navbar on mobile screens, show only on desktop
+      if (isMobile) {
+        setIsNavVisible(false); // Hide on mobile
+      } else {
+        setIsNavVisible(true); // Show on desktop
+        navContainerRef.current.classList.add("floating-nav");
+      }
     }
 
     setLastScrollY(currentScrollY);
